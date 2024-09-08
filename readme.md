@@ -127,10 +127,6 @@ The `Makefile` contains predefined commands to simplify your workflow:
 
 Feel free to submit issues, fork the repository, and open pull requests for improvements or bug fixes.
 
-### License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
 ```
 
 This `README.md` provides a detailed overview of your project’s architecture, setup, and usage. Let me know if you'd like to make any adjustments!
