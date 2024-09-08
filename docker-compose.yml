@@ -1,0 +1,44 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    command: ["serve"]  # Command to start the server
+    networks:
+      - default_network
+    depends_on:
+      - redis-cmn
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["worker"]  # Command to start the worker
+    networks:
+      - default_network
+    depends_on:
+      - server
+      - redis-cmn
+
+  redis-cmn:
+    image: redis
+    container_name: redis-cmn
+    hostname: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server
+    volumes:
+      - cache_data:/data
+    networks:
+      - default_network
+
+volumes:
+  cache_data:
+    driver: local
+
+networks:
+  default_network:
+    driver: bridge
